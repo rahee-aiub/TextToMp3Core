@@ -1,11 +1,42 @@
-﻿
+﻿@model TextToSpeech.Models.Data
 @{
     ViewData["Title"] = "Speak";
 }
 
-<h1>Speak</h1>
-<textarea id="TextArea1" rows="2" cols="20"></textarea>
+<form class="form" asp-action="Speak">
+    <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Enter Text</label>
+        <textarea class="form-control" rows="3" asp-for="Text" id="text"></textarea>
+    </div>
+    
+    <div class="mb-3">
+        <button type="button" onclick="speak()" class="btn btn-secondary">Speak</button>
+        <button type="button" onclick="download()" class="btn btn-info">Download</button>
+    </div>
+</form>
 
-<div class="col-md-12">
-    <input type="submit"  name="button" value="odense" asp-action="Speak"/>
-</div>
+<script>
+    function download() {
+        debugger;
+        $.ajax({
+            type: "POST",
+            url: "/Home/Download",
+            data: { "text": $("#text").val() },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        });
+    };
+    function speak() {
+        debugger;
+        $.ajax({
+            type: "POST",
+            url: "/Home/Speak",
+            data: { "text": $("#text").val() },
+            error: function (response) {
+                debugger;
+                alert(response.responseText);
+            }
+        });
+    }
+</script>

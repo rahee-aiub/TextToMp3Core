@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace TextToSpeech.Models
 {
-    public class data
+    public class Data
     {
-            public string txtData { get; set; }
+        public string Text { get; set; }
     }
 }
